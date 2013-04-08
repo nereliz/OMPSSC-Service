@@ -1,0 +1,34 @@
+#!/bin/bash
+
+juju-log "Installing ompss working node"
+set -eu # -x for verbose logging to juju debug-log
+
+juju-log "apt-get install git"
+sudo apt-get -y install git
+
+juju-log "Creating IPs folder"
+if [ -d "/usr/local/OMPSSC.git" ]; then
+   sudo rm -Rf /usr/local/OMPSSC.git
+fi
+
+juju-log "Cloning repository"
+if [ -d "/usr/local/OMPSSC.git" ]; then
+   sudo rm -Rf /usr/local/OMPSSC.git
+fi
+sudo git clone https://github.com/nereliz/OMPSS-Controller.git /usr/local/OMPSSC.git
+
+juju-log "Creating symilinks"
+if [ ! -L "/etc/ompssc" ]; then
+   sudo ln -s /usr/local/OMPSSC.git/ompssc /etc/ompssc
+fi
+
+if [ ! -L "/etc/init.d/ompssc" ]; then
+   sudo ln -s /etc/ompssc/init.d/ompssc /etc/init.d/ompssc
+fi
+
+juju-log "Enabling 4645 port"
+open-port 4645
+
+juju-log "Installing Qt4 libraries"
+sudo apt-get -y install libqt4-*
+

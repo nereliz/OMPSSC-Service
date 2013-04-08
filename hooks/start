@@ -1,0 +1,5 @@
+#!/bin/bash
+
+juju-log "Starting ompssc"
+sudo service ompssc start
+sudo update-rc.d ompssc defaults

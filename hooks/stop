@@ -1,0 +1,4 @@
+#!/bin/bash
+juju-log "Stopping ompssc"
+sudo service ompssc stop
+sudo update-rc.d ompssc remove

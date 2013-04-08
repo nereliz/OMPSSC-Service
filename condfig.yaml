@@ -1,0 +1,6 @@
+options:
+  plugin:
+    description: |
+      This is OMPSS Controller
+    type: string
+
