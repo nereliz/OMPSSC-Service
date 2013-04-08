@@ -2,3 +2,8 @@ name: ompssc
 summary: "OMPSS controller nod"
 description: |
     OMPSSC allows to use multiple OMPSS Servers as One
+peers:
+    ompss: 
+        limit: "none"
+        optional: "true"
+        scope: "global"
