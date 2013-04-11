@@ -1,0 +1,14 @@
+#!/bin/bash
+
+juju-log "Get IP"  
+#Format your domain to get proper ip addres from dig command.
+DOMAIN=`relation-get private-address`
+SUBDOMAIN=`echo $DOMAIN | cut -d'.' -f1`
+IP=`dig +short A $SUBDOMAIN`
+  
+  
+juju-log "removing IP file $IP"
+sudo rm /etc/ompssc/ips/$IP
+juju-log "Restart service"
+sudo service ompssc restart
+  

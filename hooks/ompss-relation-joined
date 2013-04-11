@@ -1,0 +1,20 @@
+#!/bin/bash
+
+juju-log "Creating IPs folder"
+if [ ! -d "/etc/ompssc/ips" ]; then
+  sudo mkdir /etc/ompssc/ips
+fi
+  
+juju-log "Get IP"
+  
+#Format your domain to get proper ip addres from dig command.
+DOMAIN=`relation-get private-address`
+SUBDOMAIN=`echo $DOMAIN | cut -d'.' -f1`
+IP=`dig +short A $SUBDOMAIN`
+
+  
+juju-log "creating IP file $IP"
+sudo touch /etc/ompssc/ips/$IP
+juju-log "Restart service"
+sudo service ompssc restart
+  

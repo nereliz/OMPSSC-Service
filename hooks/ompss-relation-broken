@@ -1,0 +1,7 @@
+#!/bin/bash
+
+juju-log "removing IP folder $IP"
+sudo rm -Rf /etc/ompssc/ips/$IP
+juju-log "Restart service"
+sudo service ompssc restart
+  
