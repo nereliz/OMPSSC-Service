@@ -6,11 +6,6 @@ set -eu # -x for verbose logging to juju debug-log
 juju-log "apt-get install git"
 sudo apt-get -y install git
 
-juju-log "Creating IPs folder"
-if [ -d "/usr/local/OMPSSC.git" ]; then
-   sudo rm -Rf /usr/local/OMPSSC.git
-fi
-
 juju-log "Cloning repository"
 if [ -d "/usr/local/OMPSSC.git" ]; then
    sudo rm -Rf /usr/local/OMPSSC.git
